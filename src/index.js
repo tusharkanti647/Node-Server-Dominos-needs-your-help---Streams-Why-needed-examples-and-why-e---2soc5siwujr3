@@ -8,13 +8,17 @@ const obj = {
 };
 function handleServer(req, res) {
     if (req.url === "/welcome") {
-        res.end("Welcome to Dominos!");
+        res.setHeader('Content-Type', 'text/plain');
+        res.statusCode = 200;
+        res.end('Welcome to Dominos!');
     } else if (req.url === "/contact") {
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = 200;
         const objStr = JSON.stringify(obj);
         res.end(objStr); //json
     } else {
-        res.end("bed request");
-        //res.sendStatus(404);
+        res.statusCode = 404;
+        res.end('404 Not Found');
     }
 }
 
